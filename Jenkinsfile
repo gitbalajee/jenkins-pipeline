@@ -14,7 +14,12 @@ node {
     stage('Checkout') {
         checkout scm
     }
-
+    stage('verify') {
+        steps {         
+            withMaven (maven:'myMaven') {
+                sh 'mvn verfify'
+            }
+        }
     stage('Build'){
         sh "mvn clean install"
     }
